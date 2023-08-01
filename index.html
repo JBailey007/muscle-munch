@@ -6,14 +6,73 @@
     <title></title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+    <script
+      src="https://kit.fontawesome.com/24c658e44e.js"
+      crossorigin="anonymous"
+    ></script>
     <link rel="stylesheet" href="./assets/css/style.css" />
   </head>
   <body>
+    <header>
+      <div>
+        
+        <div class="tabs is-large is-boxed is-centered">
+          <img class="logo" src="./assets/img/Vector png.png" />
+          <ul>
+            <li class="is-active">
+              <a>
+                <span class="icon is-large"
+                  ><i class="fas fa-solid fa-magnifying-glass font"></i
+                ></span>
+                <span class="font">Search</span>
+              </a>
+            </li>
+            <li>
+              <a>
+                <span class="icon is-large"
+                  ><i class="fas fa-regular fa-calendar-days font"></i
+                ></span>
+                <span class="font">Calendar</span>
+              </a>
+            </li>
+            <li>
+              <a>
+                <span class="icon is-large"
+                  ><i class="fas fa-solid fa-list font" aria-hidden="true"></i
+                ></span>
+                <span class="font">List</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+    <div class="section is-large">
+    <input class="input is-rounded" type="text" placeholder="SEARCH">
+  </div>
+    <div>
+  <div class="section is-large cs">
+      <header class="card-header">
+        <p class="card-header-title c-1">
+          Card header
+        </p>
+        <button class="card-header-icon" aria-label="more options">
+          <span class="icon">
+            <i class="fas fa-angle-down" aria-hidden="true"></i>
+          </span>
+        </button>
+      </header>
+    </div>
+  </div>
     <script
-    src="https://code.jquery.com/jquery-3.7.0.min.js"
-    integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
-    crossorigin="anonymous"
-  ></script>
+      src="https://code.jquery.com/jquery-3.7.0.min.js"
+      integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
+      crossorigin="anonymous"
+    ></script>
     <script src="./assets/js/script.js" async defer></script>
   </body>
 </html>
