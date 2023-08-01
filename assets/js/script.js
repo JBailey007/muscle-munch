@@ -80,7 +80,7 @@ $('.tabSearch').on('click', function(event) {
   $(this).addClass('is-active');
   $('.tabCalendar').removeClass('is-active');
   $('.tabSd').removeClass('is-active');
-  $('.sectionCalendar').addClass('hidden');
+  $('.section-calendar').addClass('hidden');
   $('.sectionSd').addClass('hidden');
   $('.sectionSearch').removeClass('hidden');
 });
@@ -89,7 +89,7 @@ $('.tabSd').on('click', function(event) {
   $(this).addClass('is-active');
   $('.tabCalendar').removeClass('is-active');
   $('.tabSearch').removeClass('is-active');
-  $('.sectionCalendar').addClass('hidden');
+  $('.section-calendar').addClass('hidden');
   $('.sectionSearch').addClass('hidden');
   $('.sectionSd').removeClass('hidden');
 });
@@ -100,7 +100,7 @@ $('.tabCalendar').on('click', function(event) {
   $('.tabSd').removeClass('is-active');
   $('.sectionSearch').addClass('hidden');
   $('.sectionSd').addClass('hidden');
-  $('.sectionCalendar').removeClass('hidden');
+  $('.section-calendar').removeClass('hidden');
 });
 //Create the calendar
 for(var i=0;i<dateEle.length;i++) {
