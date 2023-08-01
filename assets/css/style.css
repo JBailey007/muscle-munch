@@ -1,5 +1,6 @@
 body{
     background-color: #32612D;
+    height:100vh
 }
 .tabs{
     background: #32612D;
@@ -45,4 +46,22 @@ body{
 
 .hidden {
     display: none;
+}
+
+.section-calendar {
+    margin:5px;
+    padding:5px;
+    color:white;
+}
+
+.column {
+    border:solid 1px white;
+}
+
+textarea {
+    width:100%;
+}
+
+.flex-view {
+    display: flex;
 }
