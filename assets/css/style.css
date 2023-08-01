@@ -1,6 +1,5 @@
 body{
     background-color: #32612D;
-
 }
 .tabs{
     background: #32612D;
@@ -16,4 +15,23 @@ body{
 }
 .cs{
     background-color: #CEC7AD;
+}
+h1 {
+    color: black;
+    font-size: 35px;
+    text-align: center;
+    padding: 15px;
+}
+
+.shopping-list {
+    display: none;
+}
+.container{
+    display: flex;
+}
+
+li {
+    color: black;
+    font-size: 25px;
+    list-style: circle;
 }

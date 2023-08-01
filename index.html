@@ -19,11 +19,10 @@
   <body>
     <header>
       <div>
-        
         <div class="tabs is-large is-boxed is-centered">
           <img class="logo" src="./assets/img/Vector png.png" />
           <ul>
-            <li class="is-active">
+            <li class="">
               <a>
                 <span class="icon is-large"
                   ><i class="fas fa-solid fa-magnifying-glass font"></i
@@ -39,7 +38,7 @@
                 <span class="font">Calendar</span>
               </a>
             </li>
-            <li>
+            <li class="is-active">
               <a>
                 <span class="icon is-large"
                   ><i class="fas fa-solid fa-list font" aria-hidden="true"></i
@@ -51,23 +50,24 @@
         </div>
       </div>
     </header>
-    <div class="section is-large">
-    <input class="input is-rounded" type="text" placeholder="SEARCH">
-  </div>
-    <div>
-  <div class="section is-large cs">
-      <header class="card-header">
-        <p class="card-header-title c-1">
-          Card header
-        </p>
-        <button class="card-header-icon" aria-label="more options">
-          <span class="icon">
-            <i class="fas fa-angle-down" aria-hidden="true"></i>
-          </span>
-        </button>
-      </header>
+    <div class="section is-small">
+      <div>
+        <h1>Shopping List</h1>
+      </div>
+      <input class="input is-rounded" type="text" placeholder="New List Item" />
     </div>
-  </div>
+    <div>
+      <div class=" shopping-list container section is-large cs">
+        <div>
+          <h1>Items:</h1>
+          <ul>
+            <li>Milk</li>
+            <li>Honey</li>
+            <li>eggs</li>
+          </ul>
+        </div>
+      </div>
+    </div>
     <script
       src="https://code.jquery.com/jquery-3.7.0.min.js"
       integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
