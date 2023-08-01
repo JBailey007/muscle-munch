@@ -23,9 +23,6 @@ body{
     padding: 15px;
 }
 
-.sd{
-    display: none;
-}
 .container{
     display: flex;
 }
@@ -45,6 +42,7 @@ body{
 .fs{
     display: flex;
 }
-.calendar{
+
+.hidden {
     display: none;
 }
