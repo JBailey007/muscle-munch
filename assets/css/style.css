@@ -17,3 +17,16 @@ body{
 .cs{
     background-color: #CEC7AD;
 }
+.ss{
+    margin: -50px;
+}
+.cc{
+    background-color: #ffffff;
+
+}
+.fs{
+    display: flex;
+}
+.calendar{
+    display: none;
+}
