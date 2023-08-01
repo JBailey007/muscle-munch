@@ -233,8 +233,17 @@
     <script
       src="https://code.jquery.com/jquery-3.7.0.min.js"
       integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
-      crossorigin="anonymous"
-    ></script>
+      crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+    <script 
+      src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.9/plugin/weekday.min.js" 
+      integrity="sha512-+EJ/Ed/UbhfSypwkMnTIxgJ3izeQNc5655zPTlVqcgJ4Zd4K++JYUyg4Jy5rnKX9MfoIyfXJsu5N30MRHnShYw==" 
+      crossorigin="anonymous" referrerpolicy="no-referrer">
+    </script>
+    <script>
+      dayjs.extend(window.dayjs_plugin_weekday);
+    </script>
     <script src="./assets/js/script.js" async defer></script>
   </body>
 </html>

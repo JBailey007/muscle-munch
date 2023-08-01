@@ -73,6 +73,7 @@ if (localStorage.getItem('plan') === null) {
 } else {
   var plan = localStorage.getItem('plan');
 }
+var dateEle = $('.date');
 
 //Tab Click Events
 $('.tabSearch').on('click', function(event) {
@@ -101,7 +102,12 @@ $('.tabCalendar').on('click', function(event) {
   $('.sectionSd').addClass('hidden');
   $('.sectionCalendar').removeClass('hidden');
 });
+//Create the calendar
+for(var i=0;i<dateEle.length;i++) {
+  $(dateEle[i]).html(dayjs().weekday(i).format('ddd MMM D'));
+}
 
+//Fill in the meal plan
 for(var i=0;i<plan.length;i++) {
 
 }
