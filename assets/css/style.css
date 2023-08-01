@@ -35,6 +35,7 @@ body{
 }
 .ss{
     margin: -50px;
+    color:white;
 }
 .cc{
     background-color: #ffffff;
@@ -64,4 +65,12 @@ textarea {
 
 .flex-view {
     display: flex;
+}
+
+.label {
+    color: white;
+}
+
+.card .label {
+    color: blue;
 }
