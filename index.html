@@ -22,7 +22,7 @@
         <div class="tabs is-large is-boxed is-centered">
           <img class="logo" src="./assets/img/Vector png.png" />
           <ul>
-            <li class="is-active">
+            <li class="is-active tabSearch">
               <a>
                 <span class="icon is-large"
                   ><i class="fas fa-solid fa-magnifying-glass font"></i
@@ -30,7 +30,7 @@
                 <span class="font">Search</span>
               </a>
             </li>
-            <li>
+            <li class="tabCalendar">
               <a>
                 <span class="icon is-large"
                   ><i class="fas fa-regular fa-calendar-days font"></i
@@ -38,7 +38,7 @@
                 <span class="font">Calendar</span>
               </a>
             </li>
-            <li>
+            <li class="tabSd">
               <a>
                 <span class="icon is-large"
                   ><i class="fas fa-solid fa-list font" aria-hidden="true"></i
@@ -50,7 +50,7 @@
         </div>
       </div>
     </header>
-   <div class="sd">
+   <div class="sectionSd hidden">
     <div class="section sd">
       <div>
         <h1>Shopping List</h1>
@@ -70,6 +70,7 @@
       </div>
     </div>
   </div>
+  <div class="sectionSearch">
     <div class="card fc">
       <div class="card-content">
         <p class="title">
@@ -95,7 +96,8 @@
         </header>
       </div>
     </div>
-    <div class="calendar">
+  </div>
+    <div class="sectionCalendar hidden">
       <h1>...to be continued</h1>
       <div id="currCalendar" class="columns">
         <div id="currSun" class="column">
