@@ -112,6 +112,9 @@ for(var i=0;i<plan.length;i++) {
 
 }
 
+// fill in the joke
+getChuckJoke();
+
 function getRecipe() {
   fetch("https://api.spoonacular.com/recipes/complexSearch?apiKey=1234c2cbbf8d49a9a999b19ab6a6581f&query=chicken")
     .then(function (response) {               
@@ -138,6 +141,6 @@ function getChuckJoke() {
     return response.json();
   })
   .then(function (data) {  
-    console.log(data);
+    $(".title").html(data.value);
   });
 }
