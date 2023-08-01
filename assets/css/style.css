@@ -1,6 +1,5 @@
 body{
     background-color: #32612D;
-
 }
 .tabs{
     background: #32612D;
@@ -16,4 +15,36 @@ body{
 }
 .cs{
     background-color: #CEC7AD;
+}
+.items {
+    color: black;
+    font-size: 35px;
+    text-align: center;
+    padding: 15px;
+}
+
+.sd{
+    display: none;
+}
+.container{
+    display: flex;
+}
+
+.list-items {
+    color: black;
+    font-size: 25px;
+    list-style: circle;
+}
+.ss{
+    margin: -50px;
+}
+.cc{
+    background-color: #ffffff;
+
+}
+.fs{
+    display: flex;
+}
+.calendar{
+    display: none;
 }
