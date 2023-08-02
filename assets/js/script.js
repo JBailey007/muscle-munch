@@ -1,4 +1,3 @@
-console.log(localStorage.getItem('plan'));
 if (localStorage.getItem('plan') === null) {
   var plan = [{
     breakfast:null,
@@ -72,12 +71,16 @@ if (localStorage.getItem('plan') === null) {
   },
   ];
 } else {
-  var plan = localStorage.getItem('plan');
+  var plan = JSON.parse(localStorage.getItem('plan'));
 }
 var dateEle = $('.date');
 var appId = '41cf6aea';
 var appKey = 'fab451270b4aaf6ddf1f9605a905ea73';
 var selectedMealType = $('#meal-type').find(":selected").val();
+
+if (localStorage.getItem('weekStart') === null) {
+  localStorage.setItem('weekStart', dayjs().weekday(0).format('MM/DD/YYYY'));
+}
 
 //Tab Click Events
 $('.tab-search').on('click', function(event) {
@@ -201,15 +204,15 @@ $('#run-search').on('click', function(event) {
           switch (selectedMeal) {
             case 'breakfast':
               plan[selectedDate].breakfast = {label:itemName, ingredients:itemIng, img:itemPic}
-              document.querySelectorAll('.breakfast')[selectedDate].textContent = itemName;
+              document.querySelectorAll('.breakfast')[selectedDate].innerHTML = itemName +'<i class="fa-solid fa-trash"></i>';
               break;
             case 'lunch':
               plan[selectedDate].lunch = {label:itemName, ingredients:itemIng, img:itemPic};
-              document.querySelectorAll('.lunch')[selectedDate].textContent = itemName;
+              document.querySelectorAll('.lunch')[selectedDate].innerHTML = itemName +'<i class="fa-solid fa-trash"></i>';
               break;
             case 'dinner':
               plan[selectedDate].dinner = {label:itemName, ingredients:itemIng, img:itemPic};
-              document.querySelectorAll('.dinner')[selectedDate].textContent = itemName;
+              document.querySelectorAll('.dinner')[selectedDate].innerHTML = itemName +'<i class="fa-solid fa-trash"></i>';
               break;               
           }
           localStorage.setItem('plan', JSON.stringify(plan));
@@ -224,10 +227,11 @@ for(var i=0;i<dateEle.length;i++) {
   $(dateEle[i]).html(dayjs().weekday(i).format('ddd MMM D'));
 }
 
-//Fill in the meal plan
-for(var i=0;i<plan.length;i++) {
+//Set the current week food schedule
+setWeek();
 
-}
+//Fill in the Meal Plan
+setCalendarInit();
 
 // fill in the joke
 getChuckJoke();
@@ -352,5 +356,53 @@ function removeDaySelectOption(selectedMealType, mealSelect) {
         $(daySelect[0]).find("option[value='"+i+"']").remove();
       }
     }    
+  }
+}
+
+function setCalendarInit() {
+  plan.forEach(function(value, key) {
+    if (value.breakfast !== null) {
+      document.querySelectorAll('.breakfast')[key].innerHTML = value.breakfast.label +'<i class="fa-solid fa-trash"></i>';
+    }
+    if (value.lunch !== null) {
+      document.querySelectorAll('.lunch')[key].innerHTML = value.lunch.label +'<i class="fa-solid fa-trash"></i>';
+    } 
+    if (value.dinner !== null) {
+      document.querySelectorAll('.dinner')[key].innerHTML = value.dinner.label +'<i class="fa-solid fa-trash"></i>';             
+    }
+  });
+  $('.fa-trash').on('click', function(event) {
+    var meal = $(this).parent().attr('class');
+    var day = $(this).parents('.column').data('day');
+    switch (meal) {
+      case 'breakfast':
+        plan[day].breakfast = null;
+        break;
+      case 'lunch':
+        plan[day].lunch = null;
+        break;
+      case 'dinner':
+        plan[day].dinner = null;
+        break;
+    }
+    localStorage.setItem('plan',JSON.stringify(plan));
+    $(this).parent().html('');
+    
+  });
+};
+
+function setWeek() {
+  if(localStorage.getItem('weekStart') !== dayjs().weekday(0).format('MM/DD/YYYY')) {
+    for (var i=0;i>=6;i++) {
+      plan[i].breakfast = plan[i+7].breakfast;
+      plan[i].lunch = plan[i+7].lunch;
+      plan[i].dinner = plan[i+7].dinner;
+    }
+    for (var i=7;i>=13;i++) {
+      plan[i].breakfast = null;
+      plan[i].lunch = null;
+      plan[i].dinner = null;
+    }
+    localStorage.setItem('plan',JSON.stringify(plan));
   }
 }
