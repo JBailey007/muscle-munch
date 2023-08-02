@@ -80,31 +80,52 @@ var appKey = 'fab451270b4aaf6ddf1f9605a905ea73';
 var selectedMealType = $('#meal-type').find(":selected").val();
 
 //Tab Click Events
-$('.tabSearch').on('click', function(event) {
+$('.tab-search').on('click', function(event) {
   $(this).addClass('is-active');
-  $('.tabCalendar').removeClass('is-active');
-  $('.tabSd').removeClass('is-active');
+  $('.tab-calendar').removeClass('is-active');
+  $('.tab-sd').removeClass('is-active');
   $('.section-calendar').addClass('hidden');
-  $('.sectionSd').addClass('hidden');
-  $('.sectionSearch').removeClass('hidden');
+  $('.section-sd').addClass('hidden');
+  $('.section-search').removeClass('hidden');
 });
 
-$('.tabSd').on('click', function(event) {
+$('.tab-sd').on('click', function(event) {
   $(this).addClass('is-active');
-  $('.tabCalendar').removeClass('is-active');
-  $('.tabSearch').removeClass('is-active');
+  $('.tab-calendar').removeClass('is-active');
+  $('.tab-search').removeClass('is-active');
   $('.section-calendar').addClass('hidden');
-  $('.sectionSearch').addClass('hidden');
-  $('.sectionSd').removeClass('hidden');
+  $('.section-search').addClass('hidden');
+  $('.section-sd').removeClass('hidden');
 });
 
-$('.tabCalendar').on('click', function(event) {
+$('.tab-calendar').on('click', function(event) {
   $(this).addClass('is-active');
-  $('.tabSearch').removeClass('is-active');
-  $('.tabSd').removeClass('is-active');
-  $('.sectionSearch').addClass('hidden');
-  $('.sectionSd').addClass('hidden');
+  $('.tab-search').removeClass('is-active');
+  $('.tab-sd').removeClass('is-active');
+  $('.section-search').addClass('hidden');
+  $('.section-sd').addClass('hidden');
   $('.section-calendar').removeClass('hidden');
+});
+document.addEventListener('DOMContentLoaded', () => {
+
+  // Get all "navbar-burger" elements
+  const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+  // Add a click event on each of them
+  $navbarBurgers.forEach( el => {
+    el.addEventListener('click', () => {
+
+      // Get the target from the "data-target" attribute
+      const target = el.dataset.target;
+      const $target = document.getElementById(target);
+
+      // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+      el.classList.toggle('is-active');
+      $target.classList.toggle('is-active');
+
+    });
+  });
+
 });
 
 

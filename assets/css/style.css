@@ -77,3 +77,10 @@ textarea {
 .card .label {
     color: blue;
 }
+.tab{
+    font-size: 30px;
+    color: #000000;
+}
+.navbar{
+    background-color: #32612D;
+}
