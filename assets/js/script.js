@@ -80,28 +80,28 @@ var appKey = 'fab451270b4aaf6ddf1f9605a905ea73';
 var selectedMealType = $('#meal-type').find(":selected").val();
 
 //Tab Click Events
-$('.tabSearch').on('click', function(event) {
+$('.tab-search').on('click', function(event) {
   $(this).addClass('is-active');
-  $('.tabCalendar').removeClass('is-active');
-  $('.tabSd').removeClass('is-active');
+  $('.tab-calendar').removeClass('is-active');
+  $('.tab-sd').removeClass('is-active');
   $('.section-calendar').addClass('hidden');
   $('.sectionSd').addClass('hidden');
   $('.sectionSearch').removeClass('hidden');
 });
 
-$('.tabSd').on('click', function(event) {
+$('.tab-sd').on('click', function(event) {
   $(this).addClass('is-active');
-  $('.tabCalendar').removeClass('is-active');
-  $('.tabSearch').removeClass('is-active');
+  $('.tab-calendar').removeClass('is-active');
+  $('.tab-search').removeClass('is-active');
   $('.section-calendar').addClass('hidden');
   $('.sectionSearch').addClass('hidden');
   $('.sectionSd').removeClass('hidden');
 });
 
-$('.tabCalendar').on('click', function(event) {
+$('.tab-calendar').on('click', function(event) {
   $(this).addClass('is-active');
-  $('.tabSearch').removeClass('is-active');
-  $('.tabSd').removeClass('is-active');
+  $('.tab-search').removeClass('is-active');
+  $('.tab-sd').removeClass('is-active');
   $('.sectionSearch').addClass('hidden');
   $('.sectionSd').addClass('hidden');
   $('.section-calendar').removeClass('hidden');
@@ -126,8 +126,9 @@ $('#run-search').on('click', function(event) {
       var mealSelect = getMealSelect();
       selectedMealType = $('#meal-type').find(":selected").val();
       console.log(recipeData); 
+      localStorage.setItem('searchResults', JSON.stringify(recipeData));
       recipeData.hits.forEach(function(value,key) {      
-        card = $('<div class="card column m-2" data-ing="'+JSON.stringify(value.recipe.ingredientLines)+'>');        
+        card = $('<div class="card column m-2">');
         card.html('<div class="card-image"> \
                     <figure class="image is-4by3"> \
                       <img src="'+value.recipe.image+'" alt="Placeholder image"> \
@@ -147,8 +148,9 @@ $('#run-search').on('click', function(event) {
                     Fat: '+Math.round(value.recipe.digest[0].total/value.recipe.yield)+value.recipe.digest[0].unit+'<br/>\
                     '+daySelect.outerHTML+'\
                     '+mealSelect.outerHTML+'\
+                    <input type="hidden" id="key" name="key" value="'+key+'"> \
                     <div class="has-text-centered"> \
-                      <button class="button is-link is-light">Add to Meal Plan</button> \
+                      <button class="button is-link is-light add-meal">Add to Meal Plan</button> \
                     </div> \
                     </div> \
                   </div>');  
@@ -166,6 +168,33 @@ $('#run-search').on('click', function(event) {
           $(this).parents('.field').prev().find('select').html(daySelect.outerHTML);
           removeDaySelectOption(this.value, this);
         })
+        $('.add-meal').on('click', function(event) {
+          event.preventDefault();
+          var selectedMeal =  $(this).parent().prev().prev().find('select').find(":selected").val();
+          var selectedDate = $(this).parent().prev().prev().prev().find('select').find(":selected").val();
+          var itemName = $(this).parent().parent().siblings('.media').find('p').html();
+          var itemKey = $(this).parents('.card').find('#key').val();
+          var recipeData = JSON.parse(localStorage.getItem('searchResults'));
+          var itemPic = recipeData.hits[itemKey].recipe.image;
+          var itemIng = recipeData.hits[itemKey].recipe.ingredientLines;
+          switch (selectedMeal) {
+            case 'breakfast':
+              plan[selectedDate].breakfast = {label:itemName, ingredients:itemIng, img:itemPic}
+              document.querySelectorAll('.breakfast')[selectedDate].textContent = itemName;
+              break;
+            case 'lunch':
+              plan[selectedDate].lunch = {label:itemName, ingredients:itemIng, img:itemPic};
+              document.querySelectorAll('.lunch')[selectedDate].textContent = itemName;
+              break;
+            case 'dinner':
+              plan[selectedDate].dinner = {label:itemName, ingredients:itemIng, img:itemPic};
+              document.querySelectorAll('.dinner')[selectedDate].textContent = itemName;
+              break;               
+          }
+          localStorage.setItem('plan', JSON.stringify(plan));
+          
+        })
+
   });
 });
 
