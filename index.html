@@ -47,7 +47,7 @@
         </div>
       </nav>
     </header>
-   <div class="sd">
+   <div class="sectionSd hidden">
     <div class="section sd">
       <div>
         <h1>Shopping List</h1>
@@ -67,39 +67,185 @@
       </div>
     </div>
   </div>
+  <div class="sectionSearch">
     <div class="card fc">
       <div class="card-content">
         <p class="title">
-          “There are two hard things in computer science: cache invalidation, naming things, and off-by-one errors.”
-        </p>
-        <p class="subtitle">
-          Jeff Atwood
         </p>
       </div>
     </div>
-    <div class="section is-large ss">
-      <input class="input is-rounded" type="text" placeholder="SEARCH" />
+    <div class="section m-3 ss">
+      <div class="field">
+        <label class="label" for="mealType">Meal:</label>
+        <div class="control">
+          <select name="mealType" class="select is-medium" id="meal-type">
+            <option value="breakfast">Breakfast</option>  
+            <option value="lunch">Lunch</option>   
+            <option value="dinner">Dinner</option> 
+          </select>
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">Search Keyword:</label>
+        <div class="control">
+          <input class="input is-rounded" type="text" id="search-text" placeholder="SEARCH">
+        </div>
+      </div>
+      <div class="has-text-centered">
+        <button class="button is-link is-light" id="run-search">Search</button>
+      </div>
     </div>
     <div>
-      <div class="section is-large cs">
-        <header class="card-header">
-          <p class="card-header-title c-1">Card header</p>
-          <button class="card-header-icon" aria-label="more options">
-            <span class="icon">
-              <i class="fas fa-angle-down" aria-hidden="true"></i>
-            </span>
-          </button>
-        </header>
+      <div id='results' class="section m-3 cs">
       </div>
     </div>
-    <div class="calendar">
-      <h1>...to be continued</h1>
+  </div>
+    <div class="section-calendar hidden">
+      <div id="currCalendar" class="columns">
+        <div id="currSun" class="column">
+            <p class="date" class="column">30</p>
+            <p>Breakfast</p>
+            <textarea class="breakfast"></textarea>
+            <p>Lunch</p>
+            <textarea class="lunch"></textarea>
+            <p>Dinner</p>
+            <textarea class="dinner"></textarea>
+        </div>
+        <div id="currMon" class="column">
+            <p class="date" class="column">31</p>
+            <p>Breakfast</p>
+            <textarea class="breakfast"></textarea>
+            <p>Lunch</p>
+            <textarea class="lunch"></textarea>
+            <p>Dinner</p>
+            <textarea class="dinner"></textarea>
+        </div>
+        <div id="currTues" class="column">
+            <p class="date">1</p>
+            <p>Breakfast</p>
+            <textarea class="breakfast"></textarea>
+            <p>Lunch</p>
+            <textarea class="lunch"></textarea>
+            <p>Dinner</p>
+            <textarea class="dinner"></textarea>
+        </div>
+        <div id="currWed" class="column">
+            <p class="date">2</p>
+            <p>Breakfast</p>
+            <textarea class="breakfast"></textarea>
+            <p>Lunch</p>
+            <textarea class="lunch"></textarea>
+            <p>Dinner</p>
+            <textarea class="dinner"></textarea>
+        </div>
+        <div id="currThurs" class="column">
+            <p class="date">3</p>
+            <p>Breakfast</p>
+            <textarea class="breakfast"></textarea>
+            <p>Lunch</p>
+            <textarea class="lunch"></textarea>
+            <p>Dinner</p>
+            <textarea class="dinner"></textarea>
+        </div>
+        <div id="currFri" class="column">
+            <p class="date">4</p>
+            <p>Breakfast</p>
+            <textarea class="breakfast"></textarea>
+            <p>Lunch</p>
+            <textarea class="lunch"></textarea>
+            <p>Dinner</p>
+            <textarea class="dinner"></textarea>
+        </div>
+        <div id="currSat" class="column">
+            <p class="date">5</p>
+            <p>Breakfast</p>
+            <textarea class="breakfast"></textarea>
+            <p>Lunch</p>
+            <textarea class="lunch"></textarea>
+            <p>Dinner</p>
+            <textarea class="dinner"></textarea>
+        </div>
+        </div>
+        <div id="nextCalendar"class="columns">
+        <div id="nextSun" class="column">
+            <p class="date" class="column">30</p>
+            <p>Breakfast</p>
+            <textarea class="breakfast"></textarea>
+            <p>Lunch</p>
+            <textarea class="lunch"></textarea>
+            <p>Dinner</p>
+            <textarea class="dinner"></textarea>
+        </div>
+        <div id="nextrMon" class="column">
+            <p class="date" class="column">31</p>
+            <p>Breakfast</p>
+            <textarea class="breakfast"></textarea>
+            <p>Lunch</p>
+            <textarea class="lunch"></textarea>
+            <p>Dinner</p>
+            <textarea class="dinner"></textarea>
+        </div>
+        <div id="nextTues" class="column">
+            <p class="date">1</p>
+            <p>Breakfast</p>
+            <textarea class="breakfast"></textarea>
+            <p>Lunch</p>
+            <textarea class="lunch"></textarea>
+            <p>Dinner</p>
+            <textarea class="dinner"></textarea>
+        </div>
+        <div id="nextWed" class="column">
+            <p class="date">2</p>
+            <p>Breakfast</p>
+            <textarea class="breakfast"></textarea>
+            <p>Lunch</p>
+            <textarea class="lunch"></textarea>
+            <p>Dinner</p>
+            <textarea class="dinner"></textarea>
+        </div>
+        <div id="nextThurs" class="column">
+            <p class="date">3</p>
+            <p>Breakfast</p>
+            <textarea class="breakfast"></textarea>
+            <p>Lunch</p>
+            <textarea class="lunch"></textarea>
+            <p>Dinner</p>
+            <textarea class="dinner"></textarea>
+        </div>
+        <div id="nextFri" class="column">
+            <p class="date">4</p>
+            <p>Breakfast</p>
+            <textarea class="breakfast"></textarea>
+            <p>Lunch</p>
+            <textarea class="lunch"></textarea>
+            <p>Dinner</p>
+            <textarea class="dinner"></textarea>
+        </div>
+        <div id="nextSat" class="column">
+            <p class="date">5</p>
+            <p>Breakfast</p>
+            <textarea class="breakfast"></textarea>
+            <p>Lunch</p>
+            <textarea class="lunch"></textarea>
+            <p>Dinner</p>
+            <textarea class="dinner"></textarea>
+        </div>
+    </div>
     </div>
     <script
       src="https://code.jquery.com/jquery-3.7.0.min.js"
       integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
-      crossorigin="anonymous"
-    ></script>
+      crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+    <script 
+      src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.9/plugin/weekday.min.js" 
+      integrity="sha512-+EJ/Ed/UbhfSypwkMnTIxgJ3izeQNc5655zPTlVqcgJ4Zd4K++JYUyg4Jy5rnKX9MfoIyfXJsu5N30MRHnShYw==" 
+      crossorigin="anonymous" referrerpolicy="no-referrer">
+    </script>
+    <script>
+      dayjs.extend(window.dayjs_plugin_weekday);
+    </script>
     <script src="./assets/js/script.js" async defer></script>
   </body>
 </html>
