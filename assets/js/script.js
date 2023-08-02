@@ -85,8 +85,8 @@ $('.tab-search').on('click', function(event) {
   $('.tab-calendar').removeClass('is-active');
   $('.tab-sd').removeClass('is-active');
   $('.section-calendar').addClass('hidden');
-  $('.sectionSd').addClass('hidden');
-  $('.sectionSearch').removeClass('hidden');
+  $('.section-sd').addClass('hidden');
+  $('.section-search').removeClass('hidden');
 });
 
 $('.tab-sd').on('click', function(event) {
@@ -94,17 +94,38 @@ $('.tab-sd').on('click', function(event) {
   $('.tab-calendar').removeClass('is-active');
   $('.tab-search').removeClass('is-active');
   $('.section-calendar').addClass('hidden');
-  $('.sectionSearch').addClass('hidden');
-  $('.sectionSd').removeClass('hidden');
+  $('.section-search').addClass('hidden');
+  $('.section-sd').removeClass('hidden');
 });
 
 $('.tab-calendar').on('click', function(event) {
   $(this).addClass('is-active');
   $('.tab-search').removeClass('is-active');
   $('.tab-sd').removeClass('is-active');
-  $('.sectionSearch').addClass('hidden');
-  $('.sectionSd').addClass('hidden');
+  $('.section-search').addClass('hidden');
+  $('.section-sd').addClass('hidden');
   $('.section-calendar').removeClass('hidden');
+});
+document.addEventListener('DOMContentLoaded', () => {
+
+  // Get all "navbar-burger" elements
+  const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+  // Add a click event on each of them
+  $navbarBurgers.forEach( el => {
+    el.addEventListener('click', () => {
+
+      // Get the target from the "data-target" attribute
+      const target = el.dataset.target;
+      const $target = document.getElementById(target);
+
+      // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+      el.classList.toggle('is-active');
+      $target.classList.toggle('is-active');
+
+    });
+  });
+
 });
 
 
@@ -144,7 +165,7 @@ $('#run-search').on('click', function(event) {
                     Servings: '+value.recipe.yield+'<br/>\
                     Calories: '+Math.round(value.recipe.calories/value.recipe.yield)+'<br/>\
                     Carbs: '+Math.round(value.recipe.digest[1].total/value.recipe.yield)+value.recipe.digest[0].unit+'<br/>\
-                    Protien: '+Math.round(value.recipe.digest[2].total/value.recipe.yield)+value.recipe.digest[0].unit+'<br/>\
+                    Protein: '+Math.round(value.recipe.digest[2].total/value.recipe.yield)+value.recipe.digest[0].unit+'<br/>\
                     Fat: '+Math.round(value.recipe.digest[0].total/value.recipe.yield)+value.recipe.digest[0].unit+'<br/>\
                     '+daySelect.outerHTML+'\
                     '+mealSelect.outerHTML+'\
@@ -246,7 +267,7 @@ function getDaysSelect() {
   return fieldEle;
 }
 
-//Functuib to create the neal select element
+//Function to create the neal select element
 function getMealSelect() {
   var optionEle = '';
   var selectEle = document.createElement('select');
