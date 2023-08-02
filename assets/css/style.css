@@ -48,3 +48,6 @@ body{
 .calendar{
     display: none;
 }
+.img{
+    width: fit-content;
+}
