@@ -95,3 +95,14 @@ color: black;
 .navbar-burger{
     color: #ffffff;
 }
+.breakfast, .lunch, .dinner{
+    border-radius: 5px;
+}
+.cnsa{
+    padding: 75px;
+}
+.chuck{
+    font-size: 40px;
+    color: #ffffff;
+    font-weight: bolder;
+}
