@@ -200,25 +200,26 @@ $('#run-search').on('click', function(event) {
           var itemKey = $(this).parents('.card').find('#key').val();
           var recipeData = JSON.parse(localStorage.getItem('searchResults'));
           var itemPic = recipeData.hits[itemKey].recipe.image;
+          var itemURL = recipeData.hits[itemKey].recipe.url;
           var itemIng = recipeData.hits[itemKey].recipe.ingredientLines;
           var itemIngItems = recipeData.hits[itemKey].recipe.ingredients;
           var liEle = [];
 
           switch (selectedMeal) {
             case 'breakfast':
-              plan[selectedDate].breakfast = {label:itemName, ingredients:itemIng, img:itemPic}
-              document.querySelectorAll('.breakfast')[selectedDate].innerHTML = itemName +'<i class="fa-solid fa-trash"></i>';
+              plan[selectedDate].breakfast = {label:itemName, ingredients:itemIng, img:itemPic, url:itemURL}
+              document.querySelectorAll('.breakfast')[selectedDate].innerHTML = '<a target="_blank" href="'+itemURL+'">'+ itemName +'</a><i class="fa-solid fa-trash"></i>';
               break;
             case 'lunch':
-              plan[selectedDate].lunch = {label:itemName, ingredients:itemIng, img:itemPic};
-              document.querySelectorAll('.lunch')[selectedDate].innerHTML = itemName +'<i class="fa-solid fa-trash"></i>';
+              plan[selectedDate].lunch = {label:itemName, ingredients:itemIng, img:itemPic, url:itemURL};
+              document.querySelectorAll('.lunch')[selectedDate].innerHTML = '<a target="_blank" href="'+itemURL+'">'+ itemName +'</a><i class="fa-solid fa-trash"></i>';
               break;
             case 'dinner':
-              plan[selectedDate].dinner = {label:itemName, ingredients:itemIng, img:itemPic};
-              document.querySelectorAll('.dinner')[selectedDate].innerHTML = itemName +'<i class="fa-solid fa-trash"></i>';
+              plan[selectedDate].dinner = {label:itemName, ingredients:itemIng, img:itemPic, url:itemURL};
+              document.querySelectorAll('.dinner')[selectedDate].innerHTML = '<a target="_blank" href="'+itemURL+'">'+ itemName +'</a><i class="fa-solid fa-trash"></i>';
               break;               
           }
-          itemIngItems.forEach(function(value, key) {
+          itemIngItems.forEach(function(value) {
             var listItem = document.createElement('li');
             var currentListItems = document.querySelectorAll('#shopping-list li');
             var itemCheck = false;
@@ -239,7 +240,7 @@ $('#run-search').on('click', function(event) {
           currentListItems.forEach(function(value) {
             liEle.push(value.innerHTML);
           });
-          console.log(currentListItems);
+
           localStorage.setItem('plan', JSON.stringify(plan));
           localStorage.setItem('shoppingList', JSON.stringify(liEle));
           
@@ -391,13 +392,13 @@ function removeDaySelectOption(selectedMealType, mealSelect) {
 function setCalendarInit() {
   plan.forEach(function(value, key) {
     if (value.breakfast !== null) {
-      document.querySelectorAll('.breakfast')[key].innerHTML = value.breakfast.label +'<i class="fa-solid fa-trash"></i>';
-    }
+      document.querySelectorAll('.breakfast')[key].innerHTML = '<a target="_blank" href="'+value.breakfast.url+'">'+ value.breakfast.label +'</a><i class="fa-solid fa-trash"></i>';
+    } 
     if (value.lunch !== null) {
-      document.querySelectorAll('.lunch')[key].innerHTML = value.lunch.label +'<i class="fa-solid fa-trash"></i>';
+      document.querySelectorAll('.lunch')[key].innerHTML = '<a target="_blank" href="'+value.lunch.url+'">'+ value.lunch.label +'</a><i class="fa-solid fa-trash"></i>';
     } 
     if (value.dinner !== null) {
-      document.querySelectorAll('.dinner')[key].innerHTML = value.dinner.label +'<i class="fa-solid fa-trash"></i>';             
+      document.querySelectorAll('.dinner')[key].innerHTML = '<a target="_blank" href="'+value.dinner.url+'">'+ value.dinner.label +'</a><i class="fa-solid fa-trash"></i>';             
     }
   });
   $('.fa-trash').on('click', function(event) {
