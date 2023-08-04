@@ -77,7 +77,7 @@ var dateEle = $('.date');
 var appId = '41cf6aea';
 var appKey = 'fab451270b4aaf6ddf1f9605a905ea73';
 var selectedMealType = $('#meal-type').find(":selected").val();
-
+//setting the week start in the local storage. 
 if (localStorage.getItem('weekStart') === null) {
   localStorage.setItem('weekStart', dayjs().weekday(0).format('MM/DD/YYYY'));
 }
@@ -388,7 +388,7 @@ function removeDaySelectOption(selectedMealType, mealSelect) {
     }    
   }
 }
-
+// function to set the calendar items with a link to the recipe
 function setCalendarInit() {
   plan.forEach(function(value, key) {
     if (value.breakfast !== null) {
@@ -420,7 +420,7 @@ function setCalendarInit() {
     
   });
 };
-
+//function to set the week start so that it will go off of the day you are on
 function setWeek() {
   if(localStorage.getItem('weekStart') !== dayjs().weekday(0).format('MM/DD/YYYY')) {
     for (var i=0;i>=6;i++) {
@@ -436,7 +436,7 @@ function setWeek() {
     localStorage.setItem('plan',JSON.stringify(plan));
   }
 }
-
+// function to set the shopping list items
 function setShoppingList() {  
   var ulEle = document.querySelector('#shopping-list');
   var shoppingList = JSON.parse(localStorage.getItem('shoppingList'));
