@@ -231,7 +231,7 @@ $('#run-search').on('click', function(event) {
             });
             
             if (itemCheck === false) {              
-              listItem.textContent = value.food;
+              listItem.innerHTML = value.food + '<i class="fa-solid fa-trash"></i>';
               document.querySelector('#shopping-list').appendChild(listItem); 
             }
 
@@ -401,7 +401,7 @@ function setCalendarInit() {
       document.querySelectorAll('.dinner')[key].innerHTML = '<a target="_blank" href="'+value.dinner.url+'">'+ value.dinner.label +'</a><i class="fa-solid fa-trash"></i>';             
     }
   });
-  $('.fa-trash').on('click', function(event) {
+  $('.breakfast > .fa-trash, .lunch > .fa-trash, .dinner > .fa-trash').on('click', function(event) {
     var meal = $(this).parent().attr('class');
     var day = $(this).parents('.column').data('day');
     switch (meal) {
@@ -443,7 +443,7 @@ function setShoppingList() {
   if(shoppingList !== null) {
     shoppingList.forEach(function(value, key) {
       var liEle = document.createElement('li');
-      liEle.textContent = value;
+      liEle.innerHTML = value;
       ulEle.appendChild(liEle);
     });
   }
