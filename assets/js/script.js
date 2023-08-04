@@ -201,6 +201,9 @@ $('#run-search').on('click', function(event) {
           var recipeData = JSON.parse(localStorage.getItem('searchResults'));
           var itemPic = recipeData.hits[itemKey].recipe.image;
           var itemIng = recipeData.hits[itemKey].recipe.ingredientLines;
+          var itemIngItems = recipeData.hits[itemKey].recipe.ingredients;
+          var liEle = [];
+
           switch (selectedMeal) {
             case 'breakfast':
               plan[selectedDate].breakfast = {label:itemName, ingredients:itemIng, img:itemPic}
@@ -215,9 +218,32 @@ $('#run-search').on('click', function(event) {
               document.querySelectorAll('.dinner')[selectedDate].innerHTML = itemName +'<i class="fa-solid fa-trash"></i>';
               break;               
           }
+          itemIngItems.forEach(function(value, key) {
+            var listItem = document.createElement('li');
+            var currentListItems = document.querySelectorAll('#shopping-list li');
+            var itemCheck = false;
+            
+            currentListItems.forEach(function(listValue, listkey) {
+              if (listValue.textContent.toLowerCase() === value.food.toLowerCase()) {
+                itemCheck = true;
+              }
+            });
+            
+            if (itemCheck === false) {              
+              listItem.textContent = value.food;
+              document.querySelector('#shopping-list').appendChild(listItem); 
+            }
+
+          });
+          currentListItems = document.querySelectorAll('#shopping-list li');
+          currentListItems.forEach(function(value) {
+            liEle.push(value.innerHTML);
+          });
+          console.log(currentListItems);
           localStorage.setItem('plan', JSON.stringify(plan));
+          localStorage.setItem('shoppingList', JSON.stringify(liEle));
           
-        })
+        });
 
   });
 });
@@ -235,6 +261,9 @@ setCalendarInit();
 
 // fill in the joke
 getChuckJoke();
+
+//set the shopping list
+setShoppingList();
 
 //Function to get the Chuck Joke
 function getChuckJoke() {
@@ -405,4 +434,17 @@ function setWeek() {
     }
     localStorage.setItem('plan',JSON.stringify(plan));
   }
+}
+
+function setShoppingList() {  
+  var ulEle = document.querySelector('#shopping-list');
+  var shoppingList = JSON.parse(localStorage.getItem('shoppingList'));
+  if(shoppingList !== null) {
+    shoppingList.forEach(function(value, key) {
+      var liEle = document.createElement('li');
+      liEle.textContent = value;
+      ulEle.appendChild(liEle);
+    });
+  }
+
 }

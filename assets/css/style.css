@@ -1,9 +1,9 @@
 body, html{
-    background-color: #32612D;
+    background-color: #8dab82;
     height:100vh
 }
 .tabs{
-    background: #32612D;
+    background: #8dab82;
 }
 .logo{
     width: 100px;
@@ -79,8 +79,19 @@ textarea {
 }
 .tab{
     font-size: 30px;
-    color: #000000;
+    color: white;
 }
 .navbar{
     background-color: #32612D;
+}
+.breakfast, .lunch, .dinner{
+min-height: 25px;
+background-color: #ffffff;
+color: black;
+}
+.bcn{
+    background-color: #32612D;
+}
+.navbar-burger{
+    color: #ffffff;
 }
