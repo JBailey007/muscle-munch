@@ -12,7 +12,7 @@ You can also click on the List tab and see a detailed shopping list that will al
 
 ## Installation
 
-You can access this page using the following link. ( -------------- Coming Soon ------------)
+You can access this page using the following link. ( https://jbailey007.github.io/muscle-munch/ )
 
 ## Usage
 Click on the input field so that you can type out the desired type of recipe. You can click on the "Meal:" dropdown to view the different meals that you can select from (Breakfast, Lunch and Dinner). 
