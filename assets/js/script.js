@@ -90,6 +90,9 @@ $('.tab-search').on('click', function(event) {
   $('.section-calendar').addClass('hidden');
   $('.section-sd').addClass('hidden');
   $('.section-search').removeClass('hidden');
+  $('.cnsa').removeClass('hidden');
+  $('#results').removeClass('hidden');
+
 });
 
 $('.tab-sd').on('click', function(event) {
@@ -99,6 +102,8 @@ $('.tab-sd').on('click', function(event) {
   $('.section-calendar').addClass('hidden');
   $('.section-search').addClass('hidden');
   $('.section-sd').removeClass('hidden');
+  $('.cnsa').addClass('hidden');
+  $('#results').addClass('hidden');
 });
 
 $('.tab-calendar').on('click', function(event) {
@@ -108,6 +113,8 @@ $('.tab-calendar').on('click', function(event) {
   $('.section-search').addClass('hidden');
   $('.section-sd').addClass('hidden');
   $('.section-calendar').removeClass('hidden');
+  $('.cnsa').addClass('hidden');
+  $('#results').addClass('hidden');
 });
 document.addEventListener('DOMContentLoaded', () => {
 
