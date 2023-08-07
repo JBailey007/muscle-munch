@@ -215,17 +215,19 @@ $('#run-search').on('click', function(event) {
           switch (selectedMeal) {
             case 'breakfast':
               plan[selectedDate].breakfast = {label:itemName, ingredients:itemIng, img:itemPic, url:itemURL}
-              document.querySelectorAll('.breakfast')[selectedDate].innerHTML = '<a target="_blank" href="'+itemURL+'">'+ itemName +'</a><i class="fa-solid fa-trash"></i>';
+              document.querySelectorAll('.breakfast')[selectedDate].innerHTML = '<a target="_blank" href="'+itemURL+'">'+ itemName +'</a><div><i class="flex-trashcan fa-solid fa-trash"></i></div>';
               break;
             case 'lunch':
               plan[selectedDate].lunch = {label:itemName, ingredients:itemIng, img:itemPic, url:itemURL};
-              document.querySelectorAll('.lunch')[selectedDate].innerHTML = '<a target="_blank" href="'+itemURL+'">'+ itemName +'</a><i class="fa-solid fa-trash"></i>';
+              document.querySelectorAll('.lunch')[selectedDate].innerHTML = '<a target="_blank" href="'+itemURL+'">'+ itemName +'</a><div><i class="flex-trashcan fa-solid fa-trash"></i></div>';
               break;
             case 'dinner':
               plan[selectedDate].dinner = {label:itemName, ingredients:itemIng, img:itemPic, url:itemURL};
-              document.querySelectorAll('.dinner')[selectedDate].innerHTML = '<a target="_blank" href="'+itemURL+'">'+ itemName +'</a><i class="fa-solid fa-trash"></i>';
+              document.querySelectorAll('.dinner')[selectedDate].innerHTML = '<a target="_blank" href="'+itemURL+'">'+ itemName +'</a><div><i class="flex-trashcan fa-solid fa-trash"></i></div>';
               break;               
           }
+          deleteMeal();
+
           itemIngItems.forEach(function(value) {
             var listItem = document.createElement('li');
             var currentListItems = document.querySelectorAll('#shopping-list li');
@@ -308,7 +310,7 @@ function getDaysSelect() {
   return fieldEle;
 }
 
-//Function to create the neal select element
+//Function to create the meal select element
 function getMealSelect() {
   var optionEle = '';
   var selectEle = document.createElement('select');
@@ -399,34 +401,38 @@ function removeDaySelectOption(selectedMealType, mealSelect) {
 function setCalendarInit() {
   plan.forEach(function(value, key) {
     if (value.breakfast !== null) {
-      document.querySelectorAll('.breakfast')[key].innerHTML = '<a target="_blank" href="'+value.breakfast.url+'">'+ value.breakfast.label +'</a><i class="fa-solid fa-trash"></i>';
+      document.querySelectorAll('.breakfast')[key].innerHTML = '<a target="_blank" href="'+value.breakfast.url+'">'+ value.breakfast.label +'</a><div><i class="flex-trashcan fa-solid fa-trash"></i></div>';
     } 
     if (value.lunch !== null) {
-      document.querySelectorAll('.lunch')[key].innerHTML = '<a target="_blank" href="'+value.lunch.url+'">'+ value.lunch.label +'</a><i class="fa-solid fa-trash"></i>';
+      document.querySelectorAll('.lunch')[key].innerHTML = '<a target="_blank" href="'+value.lunch.url+'">'+ value.lunch.label +'</a><div><i class="flex-trashcan fa-solid fa-trash"></i></div>';
     } 
     if (value.dinner !== null) {
-      document.querySelectorAll('.dinner')[key].innerHTML = '<a target="_blank" href="'+value.dinner.url+'">'+ value.dinner.label +'</a><i class="fa-solid fa-trash"></i>';             
+      document.querySelectorAll('.dinner')[key].innerHTML = '<a target="_blank" href="'+value.dinner.url+'">'+ value.dinner.label +'</a><div><i class="flex-trashcan fa-solid fa-trash"></i></div>';             
     }
   });
-  $('.fa-trash').on('click', function(event) {
-    var meal = $(this).parent().attr('class');
-    var day = $(this).parents('.column').data('day');
-    switch (meal) {
-      case 'breakfast':
-        plan[day].breakfast = null;
-        break;
-      case 'lunch':
-        plan[day].lunch = null;
-        break;
-      case 'dinner':
-        plan[day].dinner = null;
-        break;
-    }
-    localStorage.setItem('plan',JSON.stringify(plan));
-    $(this).parent().html('');
-    
-  });
-};
+  deleteMeal();
+  }
+
+  function deleteMeal() {
+    $('.fa-trash').on('click', function(event) {
+      var meal = $(this).parent().parent().attr('class');
+      var day = $(this).parents('.column').data('day');
+      switch (meal) {
+        case 'breakfast':
+          plan[day].breakfast = null;
+          break;
+        case 'lunch':
+          plan[day].lunch = null;
+          break;
+        case 'dinner':
+          plan[day].dinner = null;
+          break;
+      }
+      localStorage.setItem('plan',JSON.stringify(plan));
+      $(this).parent().parent().html('');
+      
+    });
+  };
 //function to set the week start so that it will go off of the day you are on
 function setWeek() {
   if(localStorage.getItem('weekStart') !== dayjs().weekday(0).format('MM/DD/YYYY')) {

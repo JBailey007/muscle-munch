@@ -58,6 +58,11 @@ body, html{
     color:white;
 }
 
+.columns {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .column {
     border:solid 1px white;
 }
@@ -105,4 +110,9 @@ color: black;
     font-size: 40px;
     color: #ffffff;
     font-weight: bolder;
+}
+
+.flex-trashcan {
+    display: flex;
+    justify-content: flex-end;
 }
