@@ -77,7 +77,7 @@ var dateEle = $('.date');
 var appId = '41cf6aea';
 var appKey = 'fab451270b4aaf6ddf1f9605a905ea73';
 var selectedMealType = $('#meal-type').find(":selected").val();
-
+//setting the week start in the local storage. 
 if (localStorage.getItem('weekStart') === null) {
   localStorage.setItem('weekStart', dayjs().weekday(0).format('MM/DD/YYYY'));
 }
@@ -90,6 +90,9 @@ $('.tab-search').on('click', function(event) {
   $('.section-calendar').addClass('hidden');
   $('.section-sd').addClass('hidden');
   $('.section-search').removeClass('hidden');
+  $('.cnsa').removeClass('hidden');
+  $('#results').removeClass('hidden');
+
 });
 
 $('.tab-sd').on('click', function(event) {
@@ -99,6 +102,8 @@ $('.tab-sd').on('click', function(event) {
   $('.section-calendar').addClass('hidden');
   $('.section-search').addClass('hidden');
   $('.section-sd').removeClass('hidden');
+  $('.cnsa').addClass('hidden');
+  $('#results').addClass('hidden');
 });
 
 $('.tab-calendar').on('click', function(event) {
@@ -108,6 +113,8 @@ $('.tab-calendar').on('click', function(event) {
   $('.section-search').addClass('hidden');
   $('.section-sd').addClass('hidden');
   $('.section-calendar').removeClass('hidden');
+  $('.cnsa').addClass('hidden');
+  $('#results').addClass('hidden');
 });
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -208,17 +215,19 @@ $('#run-search').on('click', function(event) {
           switch (selectedMeal) {
             case 'breakfast':
               plan[selectedDate].breakfast = {label:itemName, ingredients:itemIng, img:itemPic, url:itemURL}
-              document.querySelectorAll('.breakfast')[selectedDate].innerHTML = '<a target="_blank" href="'+itemURL+'">'+ itemName +'</a><i class="fa-solid fa-trash"></i>';
+              document.querySelectorAll('.breakfast')[selectedDate].innerHTML = '<a target="_blank" href="'+itemURL+'">'+ itemName +'</a><div><i class="flex-trashcan fa-solid fa-trash"></i></div>';
               break;
             case 'lunch':
               plan[selectedDate].lunch = {label:itemName, ingredients:itemIng, img:itemPic, url:itemURL};
-              document.querySelectorAll('.lunch')[selectedDate].innerHTML = '<a target="_blank" href="'+itemURL+'">'+ itemName +'</a><i class="fa-solid fa-trash"></i>';
+              document.querySelectorAll('.lunch')[selectedDate].innerHTML = '<a target="_blank" href="'+itemURL+'">'+ itemName +'</a><div><i class="flex-trashcan fa-solid fa-trash"></i></div>';
               break;
             case 'dinner':
               plan[selectedDate].dinner = {label:itemName, ingredients:itemIng, img:itemPic, url:itemURL};
-              document.querySelectorAll('.dinner')[selectedDate].innerHTML = '<a target="_blank" href="'+itemURL+'">'+ itemName +'</a><i class="fa-solid fa-trash"></i>';
+              document.querySelectorAll('.dinner')[selectedDate].innerHTML = '<a target="_blank" href="'+itemURL+'">'+ itemName +'</a><div><i class="flex-trashcan fa-solid fa-trash"></i></div>';
               break;               
           }
+          deleteMeal();
+
           itemIngItems.forEach(function(value) {
             var listItem = document.createElement('li');
             var currentListItems = document.querySelectorAll('#shopping-list li');
@@ -301,7 +310,7 @@ function getDaysSelect() {
   return fieldEle;
 }
 
-//Function to create the neal select element
+//Function to create the meal select element
 function getMealSelect() {
   var optionEle = '';
   var selectEle = document.createElement('select');
@@ -388,19 +397,20 @@ function removeDaySelectOption(selectedMealType, mealSelect) {
     }    
   }
 }
-
+// function to set the calendar items with a link to the recipe
 function setCalendarInit() {
   plan.forEach(function(value, key) {
     if (value.breakfast !== null) {
-      document.querySelectorAll('.breakfast')[key].innerHTML = '<a target="_blank" href="'+value.breakfast.url+'">'+ value.breakfast.label +'</a><i class="fa-solid fa-trash"></i>';
+      document.querySelectorAll('.breakfast')[key].innerHTML = '<a target="_blank" href="'+value.breakfast.url+'">'+ value.breakfast.label +'</a><div><i class="flex-trashcan fa-solid fa-trash"></i></div>';
     } 
     if (value.lunch !== null) {
-      document.querySelectorAll('.lunch')[key].innerHTML = '<a target="_blank" href="'+value.lunch.url+'">'+ value.lunch.label +'</a><i class="fa-solid fa-trash"></i>';
+      document.querySelectorAll('.lunch')[key].innerHTML = '<a target="_blank" href="'+value.lunch.url+'">'+ value.lunch.label +'</a><div><i class="flex-trashcan fa-solid fa-trash"></i></div>';
     } 
     if (value.dinner !== null) {
-      document.querySelectorAll('.dinner')[key].innerHTML = '<a target="_blank" href="'+value.dinner.url+'">'+ value.dinner.label +'</a><i class="fa-solid fa-trash"></i>';             
+      document.querySelectorAll('.dinner')[key].innerHTML = '<a target="_blank" href="'+value.dinner.url+'">'+ value.dinner.label +'</a><div><i class="flex-trashcan fa-solid fa-trash"></i></div>';             
     }
   });
+<<<<<<< HEAD
   $('.breakfast > .fa-trash, .lunch > .fa-trash, .dinner > .fa-trash').on('click', function(event) {
     var meal = $(this).parent().attr('class');
     var day = $(this).parents('.column').data('day');
@@ -420,7 +430,32 @@ function setCalendarInit() {
     
   });
 };
+=======
+  deleteMeal();
+  }
+>>>>>>> 4ea49d187d5c2c329658c505c9cf32af6370614c
 
+  function deleteMeal() {
+    $('.fa-trash').on('click', function(event) {
+      var meal = $(this).parent().parent().attr('class');
+      var day = $(this).parents('.column').data('day');
+      switch (meal) {
+        case 'breakfast':
+          plan[day].breakfast = null;
+          break;
+        case 'lunch':
+          plan[day].lunch = null;
+          break;
+        case 'dinner':
+          plan[day].dinner = null;
+          break;
+      }
+      localStorage.setItem('plan',JSON.stringify(plan));
+      $(this).parent().parent().html('');
+      
+    });
+  };
+//function to set the week start so that it will go off of the day you are on
 function setWeek() {
   if(localStorage.getItem('weekStart') !== dayjs().weekday(0).format('MM/DD/YYYY')) {
     for (var i=0;i>=6;i++) {
@@ -436,7 +471,7 @@ function setWeek() {
     localStorage.setItem('plan',JSON.stringify(plan));
   }
 }
-
+// function to set the shopping list items
 function setShoppingList() {  
   var ulEle = document.querySelector('#shopping-list');
   var shoppingList = JSON.parse(localStorage.getItem('shoppingList'));
