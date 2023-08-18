@@ -15,6 +15,7 @@ You can also click on the List tab and see a detailed shopping list that will al
 You can access this page using the following link. ( https://jbailey007.github.io/muscle-munch/ )
 
 ## Usage
+
 Click on the input field so that you can type out the desired type of recipe. You can click on the "Meal:" dropdown to view the different meals that you can select from (Breakfast, Lunch and Dinner). 
 
 When you have finished typing your desired type of recipe. Click on the search button and a list of 20 search results will populate beneath the search bar. 
@@ -31,7 +32,9 @@ You can click on the List tab to view the different ingredients that are require
 N/A
 
 # Screenshot
-(------ Needs to be added once completed ---------)
+The following image shows the web application's appearance and functionality:
+
+![The muscle munch search page.](./assets/img/screenshot.png)
 
 ## License
 Please refer to the LICENSE in the repo. 
